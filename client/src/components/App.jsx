@@ -9,6 +9,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
+        Search properties:
         <Search />
       </div>
     )
