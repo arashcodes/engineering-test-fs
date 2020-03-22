@@ -6,9 +6,11 @@ class App extends React.Component {
   }
 
   render() {
-    <div>
-      Hello from App.jsx
-    </div>
+    return(
+      <div>
+        Hello from App.jsx
+      </div>
+    )
   }
 }
 
