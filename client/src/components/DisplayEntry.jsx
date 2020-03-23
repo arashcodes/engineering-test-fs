@@ -16,7 +16,8 @@ class DisplayEntry extends React.Component {
       image: '',
     }
     this.getImage = this.getImage.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleDetailsClick = this.handleDetailsClick.bind(this);
+    this.handleSaveClick = this.handleSaveClick.bind(this);
   }
 
   componentDidMount() {
@@ -36,11 +37,16 @@ class DisplayEntry extends React.Component {
       })
   }
 
-  handleClick() {
+  handleDetailsClick() {
     const property = this.props.property;
     const img = this.state.image;
     this.props.getProperty(property, img);
     this.props.changeView('details')
+  }
+
+  handleSaveClick() {
+    const property = this.props.property;
+    this.props.saveProperty(property);
   }
 
   render() {
@@ -53,9 +59,10 @@ class DisplayEntry extends React.Component {
           <td> Longitude: {this.props.property.coordinates[0]} </td>
           <td> - </td>
           <td> Latitude: {this.props.property.coordinates[1]} </td>
-          <button onClick={this.handleClick} > Details </button>
+          <button onClick={this.handleDetailsClick} > Details </button>
+          <button onClick={this.handleSaveClick} >Add to My List</button>
         </tr>
-          <img src={this.state.image} width="300" height="300" alt="Property Image" />
+          <img src={this.state.image} width="400" height="300" alt="Property Image" />
       </div>
     )
   }

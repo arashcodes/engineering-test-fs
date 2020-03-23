@@ -9,10 +9,13 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      allProperties: [],
       properties: [],
       view: 'search',
       propertyImg: '',
       property: {},
+      savedProperties: [],
+      displayTitle: '',
     }
 
     this.find = this.find.bind(this);
@@ -20,6 +23,8 @@ class App extends React.Component {
     this.renderView = this.renderView.bind(this);
     this.goHomePage = this.goHomePage.bind(this);
     this.getProperty = this.getProperty.bind(this);
+    this.saveProperty = this.saveProperty.bind(this);
+    this.showMyList = this.showMyList.bind(this);
   }
 
   find(coordinates) {
@@ -42,7 +47,10 @@ class App extends React.Component {
     }
     axios.post('http://localhost:1235/find', JSON.stringify(data))
       .then(res => {
-        this.setState({ properties: res.data });
+        this.setState({
+          properties: res.data,
+          allProperties: res.data,
+        });
       })
       .catch(err => {
         console.log(err)
@@ -56,10 +64,24 @@ class App extends React.Component {
     })
   }
 
+  saveProperty(property) {
+    const savedProperties = this.state.savedProperties;
+    savedProperties.push(property);
+    this.setState({ savedProperties: savedProperties })
+  }
+
   goHomePage() {
     this.setState({
       view: 'search',
     })
+  }
+
+  showMyList() {
+    const savedProperties = this.state.savedProperties;
+    this.setState({
+      properties: savedProperties,
+      displayTitle: 'Saved Properties'
+    });
   }
 
   changeView(option) {
@@ -73,7 +95,7 @@ class App extends React.Component {
     if (view === 'details') {
       return <DetailPage property={this.state.property}  propertyImg={this.state.propertyImg} />;
     } else if (view === 'display') {
-      return <Display properties={this.state.properties} getProperty={this.getProperty} changeView={this.changeView} />
+      return <Display properties={this.state.properties} getProperty={this.getProperty} changeView={this.changeView} saveProperty={this.saveProperty} />
     } else if (view === 'search') {
       return <Search find={this.find} changeView={this.changeView} />
     }
@@ -83,6 +105,7 @@ class App extends React.Component {
     return(
       <div>
         <button onClick={this.goHomePage} >Home</button>
+        <button onClick={this.showMyList} >Show My List</button>
         {this.renderView()}
       </div>
     )

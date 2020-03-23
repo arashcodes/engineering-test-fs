@@ -6,7 +6,7 @@ const Display = (props) => {
     <table>
         <h2> Search Results: </h2>
         {props.properties.map((item, i) => {
-          return <DisplayEntry key={i} property={item} getProperty={props.getProperty} changeView={props.changeView} />
+          return <DisplayEntry key={i} property={item} getProperty={props.getProperty} changeView={props.changeView} saveProperty={props.saveProperty} />
         })}
     </table>
   )
