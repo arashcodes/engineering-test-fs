@@ -11,8 +11,8 @@ class App extends React.Component {
     this.state = {
       properties: [],
       view: 'search',
-      propertyId: '',
       propertyImg: '',
+      property: {},
     }
 
     this.find = this.find.bind(this);
@@ -49,9 +49,9 @@ class App extends React.Component {
       })
   }
   
-  getPropertyId(propertyId, img) {
+  getPropertyId(property, img) {
     this.setState({
-      propertyId: propertyId,
+      property: property,
       propertyImg: img,
     })
   }
