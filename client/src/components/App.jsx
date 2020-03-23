@@ -21,7 +21,7 @@ class App extends React.Component {
     this.find = this.find.bind(this);
     this.changeView = this.changeView.bind(this);
     this.renderView = this.renderView.bind(this);
-    this.goHomePage = this.goHomePage.bind(this);
+    this.goBackPage = this.goBackPage.bind(this);
     this.getProperty = this.getProperty.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
     this.showMyList = this.showMyList.bind(this);
@@ -72,7 +72,7 @@ class App extends React.Component {
     this.setState({ savedProperties: savedProperties })
   }
 
-  goHomePage() {
+  goBackPage() {
     const allProperties = this.state.allProperties;
     this.changeDisplayTitle('Search Results');
 
@@ -123,8 +123,8 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <button onClick={this.goHomePage} >Home</button>
         <button onClick={this.clearSearch} >Clear Search</button>
+        <button onClick={this.goBackPage} >Back to Results</button>
         <button onClick={this.showMyList} >Show My List</button>
         {this.state.displayTitle? <h2> {this.state.displayTitle} </h2> : null}
         {this.renderView()}
