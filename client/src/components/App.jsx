@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
+import Display from './Display.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
       .then(res => {
         console.log('SUCCESS');
         console.log(res.data)
+        this.setState({ properties: res.data });
       })
       .catch(err => {
         console.log(err)
@@ -45,6 +47,7 @@ class App extends React.Component {
     return(
       <div>
         <Search find={this.find} />
+        <Display properties={this.state.properties} />
       </div>
     )
   }
