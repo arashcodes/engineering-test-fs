@@ -16,6 +16,7 @@ class DisplayEntry extends React.Component {
       image: '',
     }
     this.getImage = this.getImage.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,11 @@ class DisplayEntry extends React.Component {
       })
   }
 
+  handleClick() {
+    const propertyId = this.props.property.propertyId;
+    this.props.getPropertyId(propertyId);
+  }
+
   render() {
     const styleObj = {
       border: '2px solid',
@@ -45,6 +51,7 @@ class DisplayEntry extends React.Component {
           <td> Longitude: {this.props.property.coordinates[0]} </td>
           <td> - </td>
           <td> Latitude: {this.props.property.coordinates[1]} </td>
+          <button onClick={this.handleClick} > Details </button>
         </tr>
           <img src={this.state.image} width="300" height="300" alt="Property Image" />
       </div>

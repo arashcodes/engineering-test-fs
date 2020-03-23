@@ -17,6 +17,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.renderView = this.renderView.bind(this);
     this.goHomePage = this.goHomePage.bind(this);
+    this.getPropertyId = this.getPropertyId.bind(this);
   }
 
   find(coordinates) {
@@ -45,6 +46,10 @@ class App extends React.Component {
         console.log(err)
       })
   }
+  
+  getPropertyId(propertyId) {
+    console.log('From App.jsx: ', propertyId);
+  }
 
   goHomePage() {
     this.setState({
@@ -63,7 +68,7 @@ class App extends React.Component {
     if (view === 'detail') {
       return <DetailPage />;
     } else if ( view === 'display' ) {
-      return <Display properties={this.state.properties} />
+      return <Display properties={this.state.properties} getPropertyId={this.getPropertyId} />
     } else if (view === 'search') {
       return <Search find={this.find} changeView={this.changeView} />
     }
