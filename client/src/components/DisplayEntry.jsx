@@ -24,7 +24,7 @@ class DisplayEntry extends React.Component {
 
   getImage() {
     const propertyId = this.props.property.propertyId;
-    axios.get(`http://localhost:1235/display/f853874999424ad2a5b6f37af6b56610?overlay=yes&building=green&parcel=orange`, {responseType: 'arraybuffer'})
+    axios.get(`http://localhost:1235/display/${propertyId}?overlay=yes&building=green&parcel=orange`, {responseType: 'arraybuffer'})
       .then(res => {
         this.setState({
           image: imageEncode(res.data),
@@ -37,11 +37,14 @@ class DisplayEntry extends React.Component {
 
   render() {
     return(
-      <li>
-        <span> Longitude: {this.props.property.coordinates[0]} </span>
-        <span> Latitude: {this.props.property.coordinates[1]} </span>
-        <img src={this.state.image}></img>
-      </li>
+      <div>
+        <tr>
+          <td> Longitude: {this.props.property.coordinates[0]} </td>
+          <br />
+          <td> Latitude: {this.props.property.coordinates[1]} </td>
+        </tr>
+          <img src={this.state.image} width="300" height="300" alt="Property Image" />
+      </div>
     )
   }
 }
