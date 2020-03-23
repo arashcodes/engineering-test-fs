@@ -9,7 +9,8 @@ class DetailPage extends React.Component {
   render() {
     return(
       <div>
-        Detail Page
+        <h2> Detail Page </h2>
+        <img src={this.props.propertyImg} width="400" height="400" alt="Property Image"/>
       </div>
     )
   }

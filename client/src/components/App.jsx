@@ -11,6 +11,8 @@ class App extends React.Component {
     this.state = {
       properties: [],
       view: 'search',
+      propertyId: '',
+      propertyImg: '',
     }
 
     this.find = this.find.bind(this);
@@ -47,8 +49,11 @@ class App extends React.Component {
       })
   }
   
-  getPropertyId(propertyId) {
-    console.log('From App.jsx: ', propertyId);
+  getPropertyId(propertyId, img) {
+    this.setState({
+      propertyId: propertyId,
+      propertyImg: img,
+    })
   }
 
   goHomePage() {
@@ -65,10 +70,10 @@ class App extends React.Component {
 
   renderView() {
     const { view } = this.state;
-    if (view === 'detail') {
-      return <DetailPage />;
-    } else if ( view === 'display' ) {
-      return <Display properties={this.state.properties} getPropertyId={this.getPropertyId} />
+    if (view === 'details') {
+      return <DetailPage propertyImg={this.state.propertyImg} />;
+    } else if (view === 'display') {
+      return <Display properties={this.state.properties} getPropertyId={this.getPropertyId} changeView={this.changeView} />
     } else if (view === 'search') {
       return <Search find={this.find} changeView={this.changeView} />
     }
