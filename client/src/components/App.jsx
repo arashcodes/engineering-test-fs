@@ -25,6 +25,7 @@ class App extends React.Component {
     this.getProperty = this.getProperty.bind(this);
     this.saveProperty = this.saveProperty.bind(this);
     this.showMyList = this.showMyList.bind(this);
+    this.changeDisplayTitle = this.changeDisplayTitle.bind(this);
   }
 
   find(coordinates) {
@@ -90,6 +91,10 @@ class App extends React.Component {
     });
   }
 
+  changeDisplayTitle(title) {
+    this.setState({ displayTitle: title });
+  }
+
   renderView() {
     const view = this.state.view;
     if (view === 'details') {
@@ -97,7 +102,7 @@ class App extends React.Component {
     } else if (view === 'display') {
       return <Display properties={this.state.properties} getProperty={this.getProperty} changeView={this.changeView} saveProperty={this.saveProperty} />
     } else if (view === 'search') {
-      return <Search find={this.find} changeView={this.changeView} />
+      return <Search find={this.find} changeView={this.changeView} changeDisplayTitle={this.changeDisplayTitle} displayTitle={this.state.displayTitle}/>
     }
   }
 
@@ -106,6 +111,7 @@ class App extends React.Component {
       <div>
         <button onClick={this.goHomePage} >Home</button>
         <button onClick={this.showMyList} >Show My List</button>
+        {this.state.displayTitle? <h2> {this.state.displayTitle} </h2> : null}
         {this.renderView()}
       </div>
     )

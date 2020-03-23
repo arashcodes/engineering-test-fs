@@ -27,7 +27,8 @@ class Search extends React.Component {
     event.preventDefault();
     this.props.find(this.state);
     this.props.changeView('display');
-    
+    this.props.changeDisplayTitle('Search Results');
+
     this.setState({
       longitude: '',
       latitude: '',
