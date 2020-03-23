@@ -25,7 +25,8 @@ class Search extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // callback from App.jsx
+    this.props.find(this.state);
+
     this.setState({
       longitude: '',
       latitude: '',
