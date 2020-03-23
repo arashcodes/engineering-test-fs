@@ -34,8 +34,6 @@ class App extends React.Component {
     }
     axios.post('http://localhost:1235/find', JSON.stringify(data))
       .then(res => {
-        console.log('SUCCESS');
-        console.log(res.data)
         this.setState({ properties: res.data });
       })
       .catch(err => {

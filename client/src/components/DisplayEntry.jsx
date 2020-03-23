@@ -43,7 +43,7 @@ class DisplayEntry extends React.Component {
       <div style={styleObj} >
         <tr >
           <td> Longitude: {this.props.property.coordinates[0]} </td>
-          <br />
+          <td> - </td>
           <td> Latitude: {this.props.property.coordinates[1]} </td>
         </tr>
           <img src={this.state.image} width="300" height="300" alt="Property Image" />
