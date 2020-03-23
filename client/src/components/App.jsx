@@ -19,7 +19,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.renderView = this.renderView.bind(this);
     this.goHomePage = this.goHomePage.bind(this);
-    this.getPropertyId = this.getPropertyId.bind(this);
+    this.getProperty = this.getProperty.bind(this);
   }
 
   find(coordinates) {
@@ -49,7 +49,7 @@ class App extends React.Component {
       })
   }
   
-  getPropertyId(property, img) {
+  getProperty(property, img) {
     this.setState({
       property: property,
       propertyImg: img,
@@ -69,11 +69,11 @@ class App extends React.Component {
   }
 
   renderView() {
-    const { view } = this.state;
+    const view = this.state.view;
     if (view === 'details') {
-      return <DetailPage propertyImg={this.state.propertyImg} />;
+      return <DetailPage property={this.state.property}  propertyImg={this.state.propertyImg} />;
     } else if (view === 'display') {
-      return <Display properties={this.state.properties} getPropertyId={this.getPropertyId} changeView={this.changeView} />
+      return <Display properties={this.state.properties} getProperty={this.getProperty} changeView={this.changeView} />
     } else if (view === 'search') {
       return <Search find={this.find} changeView={this.changeView} />
     }

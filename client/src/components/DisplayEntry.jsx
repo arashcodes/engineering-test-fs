@@ -39,7 +39,7 @@ class DisplayEntry extends React.Component {
   handleClick() {
     const property = this.props.property;
     const img = this.state.image;
-    this.props.getPropertyId(property, img);
+    this.props.getProperty(property, img);
     this.props.changeView('details')
   }
 
