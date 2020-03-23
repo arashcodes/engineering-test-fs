@@ -36,9 +36,12 @@ class DisplayEntry extends React.Component {
   }
 
   render() {
+    const styleObj = {
+      border: '2px solid',
+    }
     return(
-      <div>
-        <tr>
+      <div style={styleObj} >
+        <tr >
           <td> Longitude: {this.props.property.coordinates[0]} </td>
           <br />
           <td> Latitude: {this.props.property.coordinates[1]} </td>
