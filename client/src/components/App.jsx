@@ -26,6 +26,7 @@ class App extends React.Component {
     this.saveProperty = this.saveProperty.bind(this);
     this.showMyList = this.showMyList.bind(this);
     this.changeDisplayTitle = this.changeDisplayTitle.bind(this);
+    this.clearSearch = this.clearSearch.bind(this);
   }
 
   find(coordinates) {
@@ -72,8 +73,21 @@ class App extends React.Component {
   }
 
   goHomePage() {
+    const allProperties = this.state.allProperties;
+    this.changeDisplayTitle('Search Results');
+
+    this.setState({
+      view: 'display',
+      properties: allProperties,
+    })
+  }
+
+  clearSearch() {
     this.setState({
       view: 'search',
+      properties: [],
+      allProperties: [],
+      displayTitle: '',
     })
   }
 
@@ -110,6 +124,7 @@ class App extends React.Component {
     return(
       <div>
         <button onClick={this.goHomePage} >Home</button>
+        <button onClick={this.clearSearch} >Clear Search</button>
         <button onClick={this.showMyList} >Show My List</button>
         {this.state.displayTitle? <h2> {this.state.displayTitle} </h2> : null}
         {this.renderView()}
