@@ -48,9 +48,9 @@ class Search extends React.Component {
         <br />
         <lable>
           Radius:
-          <input type="text" name="radius" value={this.state.radius} onChange={this.handleChange} />
+          <input type="text" name="radius" value={this.state.radius} onChange={this.handleChange} placeholder="10,000 meters" />
           <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Search Properties" />
         </lable>
       </form>
     )
