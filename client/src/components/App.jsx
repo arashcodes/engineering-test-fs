@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Search from './Search.jsx';
 import Display from './Display.jsx';
+import DetailPage from './DetailPage.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,9 +10,13 @@ class App extends React.Component {
 
     this.state = {
       properties: [],
+      view: 'search',
     }
 
     this.find = this.find.bind(this);
+    this.changeView = this.changeView.bind(this);
+    this.renderView = this.renderView.bind(this);
+    this.goHomePage = this.goHomePage.bind(this);
   }
 
   find(coordinates) {
@@ -41,11 +46,34 @@ class App extends React.Component {
       })
   }
 
+  goHomePage() {
+    this.setState({
+      view: 'search',
+    })
+  }
+
+  changeView(option) {
+    this.setState({
+      view: option,
+    });
+  }
+
+  renderView() {
+    const { view } = this.state;
+    if (view === 'detail') {
+      return <DetailPage />;
+    } else if ( view === 'display' ) {
+      return <Display properties={this.state.properties} />
+    } else if (view === 'search') {
+      return <Search find={this.find} changeView={this.changeView} />
+    }
+  }
+
   render() {
     return(
       <div>
-        <Search find={this.find} />
-        <Display properties={this.state.properties} />
+        <button onClick={this.goHomePage} >Home</button>
+        {this.renderView()}
       </div>
     )
   }

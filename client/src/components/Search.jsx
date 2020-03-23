@@ -26,7 +26,8 @@ class Search extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.find(this.state);
-
+    this.props.changeView('display');
+    
     this.setState({
       longitude: '',
       latitude: '',
