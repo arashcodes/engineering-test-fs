@@ -57,6 +57,7 @@ class DisplayEntry extends React.Component {
     this.props.saveProperty(property);
   }
 
+  // Renders the results in tabular format.
   render() {
     const styleObj = {
       border: '2px solid',

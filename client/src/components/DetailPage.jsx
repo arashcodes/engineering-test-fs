@@ -36,7 +36,7 @@ class DetailPage extends React.Component {
       })
   }
 
-  // Renders the results in tabular format.
+  // It renders a list of details related to a specific property. The data give from the API might need extra calculations.
   render() {
     return(
       <div>
@@ -49,16 +49,16 @@ class DetailPage extends React.Component {
           Latitude: {this.props.property.coordinates[1]}
         </li>
         <li>
-          building_area_sqm: {this.state.building_area_sqm[0]}
+          Building area in sqm: {this.state.building_area_sqm[0]}
         </li>
         <li>
-          parcel_area_sqm: {this.state.parcel_area_sqm}
+          Parcel area in sqm: {this.state.parcel_area_sqm}
         </li>
         <li>
-          zone_density: {this.state.zone_density[0]}
+          Zone density: {this.state.zone_density[0]}
         </li>
         <li>
-          building_distances_m: {this.state.building_distances_m[0]}
+          Building distances in m: {this.state.building_distances_m[0]}
         </li>
       </div>
     )
