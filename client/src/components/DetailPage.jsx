@@ -22,7 +22,9 @@ class DetailPage extends React.Component {
     this.getStats();
   }
 
-  // It makes a call to API with a property id and distance set to default 175000 meters. Then, results will be stored in the components state.
+  /**
+   * It makes a call to API with a property id and distance set to default 175000 meters. Then, results will be stored in the components state.
+   */
   getStats() {
     const propertyId = this.props.property.propertyId;
     axios.get(`http://localhost:1235/statistics/${propertyId}?distance=1755000`)
@@ -36,7 +38,9 @@ class DetailPage extends React.Component {
       })
   }
 
-  // It renders a list of details related to a specific property. The data give from the API might need extra calculations.
+  /**
+   * It renders a list of details related to a specific property. The data give from the API might need extra calculations.
+   */
   render() {
     return(
       <div>

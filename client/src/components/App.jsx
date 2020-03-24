@@ -4,11 +4,16 @@ import Search from './Search.jsx';
 import Display from './Display.jsx';
 import DetailPage from './DetailPage.jsx';
 
+/**
+ * This is the main component which is parent to Search, Display and DetailPage.
+ */
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // The searched properties are stored in both "allProperties" and "properties" in the state. "properties" feeds Display component.
+    /**
+     * The searched properties are stored in both "allProperties" and "properties" in the state. "properties" feeds Display component. "allProperties" acts as the backup storage when user toggles between a list of saved properties and all the ones displayed under search results.
+     */
     this.state = {
       allProperties: [],
       properties: [],
@@ -30,7 +35,9 @@ class App extends React.Component {
     this.clearSearch = this.clearSearch.bind(this);
   }
 
-  //Given the input coordinates, "find" will get the matched properties with a Post request from API and store in the App's state.
+  /**
+   * Given the input coordinates, "find" will get the matched properties with a Post request from API and store in the App's state. 
+   */
   find(coordinates) {
     const longitude = parseFloat(coordinates.longitude);
     const latitude = parseFloat(coordinates.latitude);
@@ -61,7 +68,9 @@ class App extends React.Component {
       })
   }
   
-  // This function will be called in DisplayEntry component to store a specific property to be displayed in DetailPage.
+  /**
+   * This function will be called in DisplayEntry component to store a specific property to be displayed in DetailPage.
+   */
   getProperty(property, img) {
     this.setState({
       property: property,
@@ -69,14 +78,18 @@ class App extends React.Component {
     })
   }
 
-  // This function will be called in DisplayEntry component to add clicked proprety to user's saved list.
+  /**
+   * This function will be called in DisplayEntry component to add clicked proprety to user's saved list.
+   */
   saveProperty(property) {
     const savedProperties = this.state.savedProperties;
     savedProperties.push(property);
     this.setState({ savedProperties: savedProperties })
   }
 
-  // Takes user back to main page with all searched results.
+  /**
+   * Takes user back to main page with all searched results.
+   */
   goBackPage() {
     const allProperties = this.state.allProperties;
     this.changeDisplayTitle('Search Results');
@@ -87,6 +100,9 @@ class App extends React.Component {
     })
   }
 
+  /**
+   * Clears search results and refreshes the app for a new search.
+   */
   clearSearch() {
     this.setState({
       view: 'search',
@@ -96,7 +112,9 @@ class App extends React.Component {
     })
   }
 
-  // This function updates the state to feed Display component with a list of user's saved properties. 
+  /**
+   * This function updates the state to feed Display component with a list of user's saved properties.
+   */ 
   showMyList() {
     const savedProperties = this.state.savedProperties;
     this.setState({
@@ -105,19 +123,25 @@ class App extends React.Component {
     });
   }
 
-  // This function is called from Search and DisplayEntry components to update the state's view. The view is used to pick with component to render at anytime.
+  /**
+   * This function is called from Search and DisplayEntry components to update the state's view. The view is used to pick with component to render at anytime.
+   */
   changeView(option) {
     this.setState({
       view: option,
     });
   }
 
-  // It changes the title from "Search Results" to "Saved Propreties".
+  /**
+   * It changes the title from "Search Results" to "Saved Propreties".
+   */
   changeDisplayTitle(title) {
     this.setState({ displayTitle: title });
   }
 
-  // This function checks the state's view to render and return the approporiate component.
+  /**
+   * This function checks the state's view to render and return the approporiate component.
+   */
   renderView() {
     const view = this.state.view;
     if (view === 'details') {
