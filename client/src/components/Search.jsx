@@ -14,6 +14,7 @@ class Search extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // It uses the ES6 computed property name syntax to update the state key corresponding to the given input name on change.
   handleChange(event) {
     const value = event.target.value;
     const name = event.target.name;
@@ -23,6 +24,7 @@ class Search extends React.Component {
     })
   }
 
+  // Takes the input given by the user and pass it to App component to be used by "find".
   handleSubmit(event) {
     event.preventDefault();
     this.props.find(this.state);
