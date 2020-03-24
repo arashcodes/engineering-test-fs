@@ -1,6 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
+/**
+ * This component displays the image, geographic location and statistics related to a specefic property.
+ */
+
 class DetailPage extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +22,7 @@ class DetailPage extends React.Component {
     this.getStats();
   }
 
+  // It makes a call to API with a property id and distance set to default 175000 meters. Then, results will be stored in the components state.
   getStats() {
     const propertyId = this.props.property.propertyId;
     axios.get(`http://localhost:1235/statistics/${propertyId}?distance=1755000`)
@@ -31,6 +36,7 @@ class DetailPage extends React.Component {
       })
   }
 
+  // Renders the results in tabular format.
   render() {
     return(
       <div>

@@ -1,6 +1,10 @@
 import React from 'react';
 import DisplayEntry from './DisplayEntry.jsx';
 
+/**
+ * This component takes a list of properties to display and map it to its child component DisplayEntry.
+ */
+
 const Display = (props) => {
   return(
     <table>

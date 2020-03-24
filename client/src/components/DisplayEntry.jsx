@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
+// This function takes in raw jpeg as argument and encodes the image.
 function imageEncode (arrayBuffer) {
   let u8 = new Uint8Array(arrayBuffer)
   let b64encoded = btoa([].reduce.call(new Uint8Array(arrayBuffer),function(p,c){return p+String.fromCharCode(c)},''))
   let mimetype="image/jpeg"
   return "data:"+mimetype+";base64,"+b64encoded
 }
+
+/**
+ * This component gets properties from Display as its parent component. It also gets the property's image from API. 
+ */
 
 class DisplayEntry extends React.Component {
   constructor(props) {
@@ -24,6 +29,7 @@ class DisplayEntry extends React.Component {
     this.getImage();
   }
 
+  // It gets and encodes the property image from API and store it in the component's state.
   getImage() {
     const propertyId = this.props.property.propertyId;
     axios.get(`http://localhost:1235/display/${propertyId}?overlay=yes&building=green&parcel=orange`, {responseType: 'arraybuffer'})
@@ -37,6 +43,7 @@ class DisplayEntry extends React.Component {
       })
   }
 
+  // It passes the clicked property to App component to be rendered in DetailPage component.
   handleDetailsClick() {
     const property = this.props.property;
     const img = this.state.image;
@@ -44,6 +51,7 @@ class DisplayEntry extends React.Component {
     this.props.changeView('details')
   }
 
+  // Adds the clicked property to the list of user's saved property with a call back function from App's component.
   handleSaveClick() {
     const property = this.props.property;
     this.props.saveProperty(property);
