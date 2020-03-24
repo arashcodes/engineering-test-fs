@@ -158,7 +158,7 @@ class App extends React.Component {
       <div>
         <button onClick={this.clearSearch} >Clear Search</button>
         <button onClick={this.goBackPage} >Back to Results</button>
-        <button onClick={this.showMyList} >Show My List</button>
+        {this.state.view !== 'details'? <button onClick={this.showMyList} >Show My List</button> : null}
         {this.state.displayTitle? <h2> {this.state.displayTitle} </h2> : null}
         {this.renderView()}
       </div>
